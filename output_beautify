@@ -42,7 +42,15 @@ while (my $line = <>) {
 		printf "  %s%s%s", YELLOW, $line, RESET;
 	} elsif ($line =~ /^as appropriate to mark resolution/) {
 		printf "  %s%s%s", YELLOW, $line, RESET;
-		
+	} elsif ($line =~ /^# On branch/) {
+
+	} elsif ($line =~ /^nothing to commit \(working directory clean\)/) {		
+
+	} elsif ($line =~ /^# Your branch is ahead of /) {
+		printf "  %s%s%s", YELLOW, $line, RESET;
+	} elsif ($line =~ /^#	modified:/) {
+		printf "  %s%s%s", YELLOW, $line, RESET;
+	} elsif ($line =~ /^#/) {
 	} else {
 		print $line;
 	}
