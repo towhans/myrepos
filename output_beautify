@@ -13,44 +13,48 @@ STDOUT->autoflush;	# make output unbuffered
 
 while (my $line = <>) {
 	if ($line =~ /^\sM\s(.*)$/) {
-		printf "  %s M %s%s\n", YELLOW, $1, RESET;
+		printf "  %s M %s%s\n", CYAN, $1, RESET;
 	} elsif ($line =~ /^mr .*: finished \(.*\)/) {
-		printf "\n%s%s%s", GREEN, $line, RESET;
+		printf "%s%s%s\n", GREEN, $line, RESET;
 	} elsif ($line =~ /^\?(.*)$/) {
-		printf "  %s?%s%s\n", YELLOW, $1, RESET;
+		printf "  %s?%s%s\n", CYAN, $1, RESET;
 	} elsif ($line =~ /^\s*$/) {
 		# skip empty lines
 	} elsif ($line =~ /command failed$/) {
-		printf "  %s%s%s", RED, $line, RESET;
+		printf "  %s%s%s\n", MAGENTA, $line, RESET;
 	} elsif ($line =~ /fail/) {
 		printf "%s%s%s", RED, $line, RESET;
 	} elsif ($line =~ /Current branch master is up to date/) {
-		printf "  %s%s%s", FAINT, $line, RESET;
+		#printf "  %s%s%s", FAINT, $line, RESET;
 	} elsif ($line =~ /Cloning into/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^UU\s/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^U\s/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^Cannot pull with rebase: You have unstaged changes./) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^Please commit or stash them/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^Pull is not possible/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^Please, fix them up/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^as appropriate to mark resolution/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^# On branch/) {
 
 	} elsif ($line =~ /^nothing to commit \(working directory clean\)/) {		
 
 	} elsif ($line =~ /^# Your branch is ahead of /) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^#	modified:/) {
-		printf "  %s%s%s", YELLOW, $line, RESET;
+		printf "  %s%s%s", CYAN, $line, RESET;
 	} elsif ($line =~ /^#/) {
+
+	} elsif ($line =~ /^mr (.*): (.*)$/) {
+		printf "%s%s%s%s\n", FAINT, "mr $1: ", RESET, $2;
+
 	} else {
 		print $line;
 	}
